@@ -1,65 +1,37 @@
-# passgen
+# 🔐 passgen — Generate passwords from the terminal
 
-Command-line password generator written in Go.
+A small Go CLI that generates secure random passwords with flexible character sets and exclusions.
 
-## Features
-- Length control with `-len`
-- Character sets: `-lower`, `-upper`, `-digits`, `-symbols`
-- Generate multiple passwords with `-count`
-- Exclude specific characters with `-exclude`
-- Remove ambiguous chars (0 O 1 l I) with `-no-ambiguous`
+> Uses `crypto/rand` for cryptographically secure randomness. If no charset flags are provided, all sets are enabled by default.
 
-## Install
-
-### Go toolchain
-
-```
-go install ./...
-```
-
-### Build
-
-```
+## Quickstart
+```bash
+# build
 go build -o passgen .
+
+# basic (defaults to all character sets)
+./passgen -len 16 -count 3
+
+# lower/upper/digits only
+./passgen -len 24 -count 5 -lower -upper -digits
+
+# symbols only, excluding "@$"
+./passgen -len 20 -symbols -exclude "@$"
+
+# exclude ambiguous characters (0 O 1 l I)
+./passgen -len 16 -no-ambiguous
 ```
 
-## Usage
+## Command Surface
+- **Length:** `-len <n>`
+- **Char sets:** `-lower`, `-upper`, `-digits`, `-symbols`
+- **Count:** `-count <n>`
+- **Exclude chars:** `-exclude "..."`
+- **No ambiguous:** `-no-ambiguous`
+- **Help:** `-h` / `-help`
 
-Basic (defaults to all character sets if none are specified):
-
-```
-go run . -len 16 -count 3
-```
-
-Only lower/upper/digits:
-
-```
-go run . -len 24 -count 5 -lower -upper -digits
-```
-
-Symbols only, excluding "@$":
-
-```
-go run . -len 20 -symbols -exclude "@$"
-```
-
-Exclude ambiguous characters:
-
-```
-go run . -len 16 -no-ambiguous
-```
-
-Help:
-
-```
-go run . -h
-```
-
-## CI/CD
-
-- CI runs on tag push matching `v*`.
-- Builds the binary and uploads it as a GitHub Release asset.
+## Configuration
+No config file. All behavior is controlled via CLI flags.
 
 ## Notes
-- Uses `crypto/rand` for cryptographically secure randomness.
-- If no charset flags are provided, all are enabled by default.
+- Errors are printed to stderr and exit with code 1 on invalid input.
