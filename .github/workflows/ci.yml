@@ -23,8 +23,9 @@ jobs:
         run: |
           mkdir -p dist
           go build -o dist/passgen .
-          GOOS=darwin GOARCH=amd64 go build -o dist/passgen_darwin_amd64 .
-          (cd dist && zip -q passgen_darwin_amd64.zip passgen_darwin_amd64)
+          mkdir -p dist/darwin_amd64
+          GOOS=darwin GOARCH=amd64 go build -o dist/darwin_amd64/passgen .
+          (cd dist/darwin_amd64 && zip -q ../passgen_darwin_amd64.zip passgen)
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
