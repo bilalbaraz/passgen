@@ -7,6 +7,8 @@ import (
 	"fmt"
 	"math/big"
 	"os"
+	"os/exec"
+	"runtime"
 	"strings"
 )
 
@@ -28,6 +30,7 @@ func main() {
 	count := flag.Int("count", 1, "number of passwords to generate")
 	exclude := flag.String("exclude", "", "exclude specific characters")
 	noAmbiguous := flag.Bool("no-ambiguous", false, "exclude ambiguous characters like 0 O 1 l I")
+	copyOut := flag.Bool("copy", false, "copy generated passwords to clipboard")
 	flag.Parse()
 
 	if *length <= 0 {
@@ -59,12 +62,20 @@ func main() {
 		fatal(errors.New("character set is empty after exclusions"))
 	}
 
+	passwords := make([]string, 0, *count)
 	for i := 0; i < *count; i++ {
 		pwd, err := generatePassword(*length, charset)
 		if err != nil {
 			fatal(err)
 		}
+		passwords = append(passwords, pwd)
 		fmt.Println(pwd)
+	}
+
+	if *copyOut {
+		if err := copyToClipboard(strings.Join(passwords, "\n")); err != nil {
+			fatal(err)
+		}
 	}
 }
 
@@ -121,4 +132,32 @@ func generatePassword(length int, charset []rune) (string, error) {
 func fatal(err error) {
 	fmt.Fprintln(os.Stderr, "error:", err)
 	os.Exit(1)
+}
+
+func copyToClipboard(text string) error {
+	if text == "" {
+		return errors.New("nothing to copy")
+	}
+
+	var cmd *exec.Cmd
+	switch runtime.GOOS {
+	case "darwin":
+		cmd = exec.Command("pbcopy")
+	case "windows":
+		cmd = exec.Command("cmd", "/c", "clip")
+	default:
+		if _, err := exec.LookPath("wl-copy"); err == nil {
+			cmd = exec.Command("wl-copy")
+		} else if _, err := exec.LookPath("xclip"); err == nil {
+			cmd = exec.Command("xclip", "-selection", "clipboard")
+		} else {
+			return errors.New("no clipboard tool found (need wl-copy or xclip)")
+		}
+	}
+
+	cmd.Stdin = strings.NewReader(text)
+	if err := cmd.Run(); err != nil {
+		return fmt.Errorf("clipboard copy failed: %w", err)
+	}
+	return nil
 }
