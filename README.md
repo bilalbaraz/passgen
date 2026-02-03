@@ -1,5 +1,7 @@
 # 🔐 passgen — Generate passwords from the terminal
 
+![PassGen Demo](demo.gif)
+
 A small Go CLI that generates secure random passwords with flexible character sets and exclusions.
 
 > Uses `crypto/rand` for cryptographically secure randomness. If no charset flags are provided, all sets are enabled by default.
