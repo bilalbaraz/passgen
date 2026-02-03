@@ -1,6 +1,8 @@
 # 🔐 passgen — Generate passwords from the terminal
 
-![PassGen Demo](demo.gif)
+<p align="center">
+  <img src="demo.gif" alt="PassGen Demo" width="500" />
+</p>
 
 A small Go CLI that generates secure random passwords with flexible character sets and exclusions.
 
