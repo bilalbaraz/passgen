@@ -42,7 +42,7 @@ func main() {
 	copyOut := flag.Bool("copy", false, "copy generated passwords to clipboard")
 	flag.Parse()
 
-	fmt.Println(banner)
+	fmt.Print(banner)
 
 	if *length <= 0 {
 		fatal(errors.New("-len must be greater than 0"))
