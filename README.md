@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="passgen-banner.jpg" alt="PassGen Banner" width="1024" />
+</p>
+
 # 🔐 passgen — Generate passwords from the terminal
 
 <p align="center">
