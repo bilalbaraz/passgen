@@ -21,6 +21,15 @@ const (
 
 var ambiguousChars = []rune{'0', 'O', '1', 'l', 'I'}
 
+const banner = " " +
+	"                                       \n" +
+	"  _ __   __ _ ___ ___  __ _  ___ _ __  \n" +
+	" | '_ \\ / _` / __/ __|/ _` |/ _ \\ '_ \\ \n" +
+	" | |_) | (_| \\__ \\__ \\ (_| |  __/ | | |\n" +
+	" | .__/ \\__,_|___/___/\\__, |\\___|_| |_|\n" +
+	" | |                   __/ |           \n" +
+	" |_|                  |___/            \n"
+
 func main() {
 	length := flag.Int("len", 16, "password length")
 	lower := flag.Bool("lower", false, "include lowercase letters")
@@ -32,6 +41,8 @@ func main() {
 	noAmbiguous := flag.Bool("no-ambiguous", false, "exclude ambiguous characters like 0 O 1 l I")
 	copyOut := flag.Bool("copy", false, "copy generated passwords to clipboard")
 	flag.Parse()
+
+	fmt.Println(banner)
 
 	if *length <= 0 {
 		fatal(errors.New("-len must be greater than 0"))
