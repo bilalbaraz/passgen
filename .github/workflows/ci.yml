@@ -26,12 +26,15 @@ jobs:
           mkdir -p dist/darwin_amd64
           GOOS=darwin GOARCH=amd64 go build -o dist/darwin_amd64/passgen .
           (cd dist/darwin_amd64 && zip -q ../passgen_darwin_amd64.zip passgen)
+          mkdir -p dist/linux_amd64
+          GOOS=linux GOARCH=amd64 go build -o dist/linux_amd64/passgen .
+          (cd dist/linux_amd64 && zip -q ../passgen_linux_amd64.zip passgen)
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: passgen
-          path: dist/passgen
+          path: dist/passgen*
 
       - name: Create release and upload asset
         if: startsWith(github.ref, 'refs/tags/')
@@ -40,3 +43,4 @@ jobs:
           files: |
             dist/passgen
             dist/passgen_darwin_amd64.zip
+            dist/passgen_linux_amd64.zip

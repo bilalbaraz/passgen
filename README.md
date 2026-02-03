@@ -28,6 +28,9 @@ passgen -len 20 -symbols -exclude "@$"
 
 # exclude ambiguous characters (0 O 1 l I)
 passgen -len 16 -no-ambiguous
+
+# copy generated passwords to clipboard
+passgen -len 20 -count 3 -copy
 ```
 
 ## Command Surface
@@ -36,6 +39,7 @@ passgen -len 16 -no-ambiguous
 - **Count:** `-count <n>`
 - **Exclude chars:** `-exclude "..."`
 - **No ambiguous:** `-no-ambiguous`
+- **Copy to clipboard:** `-copy`
 - **Help:** `-h` / `-help`
 
 ## Configuration
@@ -43,3 +47,4 @@ No config file. All behavior is controlled via CLI flags.
 
 ## Notes
 - Errors are printed to stderr and exit with code 1 on invalid input.
+- `-copy` uses `pbcopy` (macOS), `clip` (Windows), or `wl-copy`/`xclip` (Linux).
