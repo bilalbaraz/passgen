@@ -50,7 +50,7 @@ jobs:
             Maintainer: Bilal Baraz <bilalbaraz@windowslive.com>
             Description: Secure random password generator CLI
             EOF
-            dpkg-deb --build "${PKGROOT}" "dist/passgen_${VERSION}_${ARCH}.deb"
+            dpkg-deb --build --root-owner-group "${PKGROOT}" "dist/passgen_${VERSION}_${ARCH}.deb"
           done
 
       - name: Upload artifact
