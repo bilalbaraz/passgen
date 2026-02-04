@@ -41,15 +41,7 @@ jobs:
             if [ -f README.md ]; then
               install -m 644 README.md "${PKGROOT}/usr/share/doc/passgen/README.md"
             fi
-            cat > "${PKGROOT}/DEBIAN/control" <<EOF
-            Package: passgen
-            Version: ${VERSION}
-            Section: utils
-            Priority: optional
-            Architecture: ${ARCH}
-            Maintainer: Bilal Baraz <bilalbaraz@windowslive.com>
-            Description: Secure random password generator CLI
-            EOF
+            envsubst < debian/control.in > "${PKGROOT}/DEBIAN/control"
             dpkg-deb --build --root-owner-group "${PKGROOT}" "dist/passgen_${VERSION}_${ARCH}.deb"
           done
 

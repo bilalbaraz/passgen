@@ -1,0 +1,7 @@
+Package: passgen
+Version: ${VERSION}
+Section: utils
+Priority: optional
+Architecture: ${ARCH}
+Maintainer: Bilal Baraz <bilalbaraz@windowslive.com>
+Description: Secure random password generator CLI
