@@ -1,0 +1,40 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+language: "en"
+early_access: true
+tone_instructions: |
+  Be casual, friendly, and egoless, using approachable, clear, and conversational language that feels warm and engaging.
+  Keep the writing light, concise, and positive, as if speaking to a peer.
+reviews:
+  request_changes_workflow: false
+  high_level_summary: true
+  poem: false
+  review_status: true
+  collapse_walkthrough: false
+  sequence_diagrams: false
+  path_instructions:
+    - path: "**/*.go"
+      instructions: |
+        Review the Golang files with a focus on the project's goals:
+        - Actor Model Integration: Ensure the code effectively utilizes the [protoactor](https://github.com/AsynkronIT/protoactor-go)
+          framework, adhering to best practices of the Actor Model.
+        - Domain-Driven Design: Verify that Domain-Driven Design principles are integrated properly, with clear separation of concerns
+          and well-defined domain models. Ensure the use of Event Sourcing is correctly implemented in the Actor-based system.
+        - Code Quality and Maintainability: Focus on readability, proper use of Go idioms, and maintainable code structure. Check
+          for consistent naming conventions, efficient error handling, and adequate documentation, including meaningful comments where needed.
+        - Performance and Scalability: Identify any potential areas for performance improvement, especially concerning actor behavior,
+          concurrency, and data persistence. Suggest refactoring if the code can be streamlined or optimized.
+    - path: "**/*.md"
+      instructions: |
+        Review markdown documentation with these guidelines:
+        - Structure: Ensure consistent heading hierarchy and document organization
+        - Content: Verify accuracy of technical details, code examples, and API references
+        - Quality: Check for spelling, grammar, and broken links
+        - Completeness: Confirm all features and changes are properly documented
+        - Style: Follow project's documentation style guide and formatting conventions
+  auto_review:
+    enabled: true
+    drafts: false
+    base_branches:
+      - "main"
+chat:
+  auto_reply: true
