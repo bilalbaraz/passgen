@@ -4,7 +4,7 @@
 
 # 🔐 passgen — Generate passwords from the terminal
 
-[![Coverage Status](https://coveralls.io/repos/github/bilalbaraz/passgen/badge.svg?branch=main)](https://coveralls.io/github/bilalbaraz/passgen?branch=main)
+![GitHub Release](https://img.shields.io/github/v/release/bilalbaraz/passgen)
 
 <p align="center">
   <img src="demo.gif" alt="PassGen Demo" width="500" />
