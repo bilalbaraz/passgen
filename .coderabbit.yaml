@@ -38,9 +38,3 @@ reviews:
       - "main"
 chat:
   auto_reply: true
-  auto_reply_messages:
-    greeting: "👋 Thanks for the mention! 😊 I'm here to assist with your code review."
-    help_request: "🫡 I'm on it! What specific aspect would you like me to focus on?"
-  triggers:
-    - keywords: ["help", "review", "check"]
-      response: "👌 Got it! I'll review that for you right away."
