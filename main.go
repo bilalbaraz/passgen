@@ -10,6 +10,8 @@ import (
 	"os/exec"
 	"runtime"
 	"strings"
+
+	"github.com/skip2/go-qrcode"
 )
 
 const (
@@ -40,6 +42,7 @@ func main() {
 	exclude := flag.String("exclude", "", "exclude specific characters")
 	noAmbiguous := flag.Bool("no-ambiguous", false, "exclude ambiguous characters like 0 O 1 l I")
 	copyOut := flag.Bool("copy", false, "copy generated passwords to clipboard")
+	qrOut := flag.Bool("qr", false, "render first password as QR code in terminal")
 	flag.Parse()
 
 	fmt.Print(banner)
@@ -49,6 +52,9 @@ func main() {
 	}
 	if *count <= 0 {
 		fatal(errors.New("-count must be greater than 0"))
+	}
+	if *qrOut && *count > 1 {
+		fatal(errors.New("-qr supports only -count=1 to avoid terminal clutter"))
 	}
 
 	if !charsetFlagsSpecified() {
@@ -81,6 +87,14 @@ func main() {
 		}
 		passwords = append(passwords, pwd)
 		fmt.Println(pwd)
+	}
+
+	if *qrOut {
+		qr, err := qrcode.New(passwords[0], qrcode.Medium)
+		if err != nil {
+			fatal(err)
+		}
+		fmt.Println(qr.ToSmallString(false))
 	}
 
 	if *copyOut {

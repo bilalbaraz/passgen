@@ -53,6 +53,9 @@ passgen -len 16 -no-ambiguous
 
 # copy generated passwords to clipboard
 passgen -len 20 -count 3 -copy
+
+# render first password as QR code in terminal (requires -count 1)
+passgen -len 20 -qr
 ```
 
 ## Command Surface
@@ -62,6 +65,7 @@ passgen -len 20 -count 3 -copy
 - **Exclude chars:** `-exclude "..."`
 - **No ambiguous:** `-no-ambiguous`
 - **Copy to clipboard:** `-copy`
+- **QR code:** `-qr` (only when `-count 1`)
 - **Help:** `-h` / `-help`
 
 ## Configuration
