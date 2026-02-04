@@ -12,10 +12,28 @@ A small Go CLI that generates secure random passwords with flexible character se
 
 > Uses `crypto/rand` for cryptographically secure randomness. If no charset flags are provided, all sets are enabled by default.
 
-## Installation (Homebrew)
+## Installation
+
+### Homebrew
 ```bash
 brew tap bilalbaraz/tap
 brew install passgen
+```
+
+### Linux amd64
+```bash
+wget https://github.com/bilalbaraz/passgen/releases/download/v0.3.0/passgen_linux_amd64.zip \
+&& unzip passgen_linux_amd64.zip \
+&& sudo mv passgen /usr/local/bin/ \
+&& rm passgen_linux_amd64.zip
+```
+
+### Linux arm64
+```bash
+wget https://github.com/bilalbaraz/passgen/releases/download/v0.3.0/passgen_linux_arm64.zip \
+&& unzip passgen_linux_arm64.zip \
+&& sudo mv passgen /usr/local/bin/ \
+&& rm passgen_linux_arm64.zip
 ```
 
 ## Quickstart
