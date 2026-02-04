@@ -22,7 +22,7 @@ brew install passgen
 
 ### Linux amd64
 ```bash
-wget https://github.com/bilalbaraz/passgen/releases/download/v0.3.0/passgen_linux_amd64.zip \
+wget -L https://github.com/bilalbaraz/passgen/releases/latest/download/passgen_linux_amd64.zip \
 && unzip passgen_linux_amd64.zip \
 && sudo mv passgen /usr/local/bin/ \
 && rm passgen_linux_amd64.zip
@@ -30,7 +30,7 @@ wget https://github.com/bilalbaraz/passgen/releases/download/v0.3.0/passgen_linu
 
 ### Linux arm64
 ```bash
-wget https://github.com/bilalbaraz/passgen/releases/download/v0.3.0/passgen_linux_arm64.zip \
+wget -L https://github.com/bilalbaraz/passgen/releases/latest/download/passgen_linux_arm64.zip \
 && unzip passgen_linux_arm64.zip \
 && sudo mv passgen /usr/local/bin/ \
 && rm passgen_linux_arm64.zip
