@@ -41,6 +41,7 @@ jobs:
             if [ -f README.md ]; then
               install -m 644 README.md "${PKGROOT}/usr/share/doc/passgen/README.md"
             fi
+            export VERSION ARCH
             envsubst < debian/control.in > "${PKGROOT}/DEBIAN/control"
             dpkg-deb --build --root-owner-group "${PKGROOT}" "dist/passgen_${VERSION}_${ARCH}.deb"
           done
