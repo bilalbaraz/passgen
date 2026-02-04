@@ -32,6 +32,19 @@ jobs:
           mkdir -p dist/linux_arm64
           GOOS=linux GOARCH=arm64 go build -o dist/linux_arm64/passgen .
           (cd dist/linux_arm64 && zip -q ../passgen_linux_arm64.zip passgen)
+          VERSION="${GITHUB_REF_NAME#v}"
+          for ARCH in amd64 arm64; do
+            PKGROOT="dist/pkg_${ARCH}"
+            rm -rf "${PKGROOT}"
+            mkdir -p "${PKGROOT}/DEBIAN" "${PKGROOT}/usr/bin" "${PKGROOT}/usr/share/doc/passgen"
+            install -m 755 "dist/linux_${ARCH}/passgen" "${PKGROOT}/usr/bin/passgen"
+            if [ -f README.md ]; then
+              install -m 644 README.md "${PKGROOT}/usr/share/doc/passgen/README.md"
+            fi
+            export VERSION ARCH
+            envsubst < debian/control.in > "${PKGROOT}/DEBIAN/control"
+            dpkg-deb --build --root-owner-group "${PKGROOT}" "dist/passgen_${VERSION}_${ARCH}.deb"
+          done
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
@@ -48,3 +61,5 @@ jobs:
             dist/passgen_darwin_amd64.zip
             dist/passgen_linux_amd64.zip
             dist/passgen_linux_arm64.zip
+            dist/passgen_*_amd64.deb
+            dist/passgen_*_arm64.deb

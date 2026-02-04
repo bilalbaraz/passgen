@@ -4,6 +4,8 @@
 
 # 🔐 passgen — Generate passwords from the terminal
 
+![GitHub Release](https://img.shields.io/github/v/release/bilalbaraz/passgen)
+
 <p align="center">
   <img src="demo.gif" alt="PassGen Demo" width="500" />
 </p>
