@@ -5,7 +5,7 @@ remote_theme: just-the-docs/just-the-docs
 title: Passgen Docs
 description: Documentation for the passgen CLI
 url: "https://bilalbaraz.github.io"
-baseurl: "/open-source/passgen"
+baseurl: "/passgen"
 
 # Theme settings
 color_scheme: dark
