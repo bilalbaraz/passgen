@@ -1,0 +1,16 @@
+# Just the Docs configuration
+remote_theme: just-the-docs/just-the-docs
+
+# Site settings
+title: Passgen Docs
+description: Documentation for the passgen CLI
+url: "https://bilalbaraz.github.io"
+baseurl: "/passgen"
+
+# Theme settings
+color_scheme: dark
+search_enabled: true
+heading_anchors: true
+
+# Footer
+footer_content: "Copyright © 2026"
