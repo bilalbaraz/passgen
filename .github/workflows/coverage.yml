@@ -1,0 +1,33 @@
+name: Run tests and upload coverage
+
+on:
+  pull_request:
+    types: [closed]
+    branches: [main]
+
+jobs:
+  test:
+    name: Run tests and collect coverage
+    if: ${{ github.event.pull_request.merged == true }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
+      - name: Install dependencies
+        run: go mod download
+
+      - name: Run tests
+        run: go test -coverprofile=coverage.txt
+
+      - name: Upload results to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
