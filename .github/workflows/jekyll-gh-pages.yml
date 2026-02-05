@@ -38,7 +38,7 @@ jobs:
       - name: Move files to custom URI
         run: |
           mkdir -p ./_final_site/open-source/passgen
-          mv ./_site/* ./_final_site/open-source/passgen/
+          cp -a ./_site/. ./_final_site/open-source/passgen/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
 
