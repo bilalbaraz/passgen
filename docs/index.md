@@ -4,13 +4,13 @@ title: Home
 nav_order: 1
 ---
 
-![PassGen Banner](../passgen-banner.jpg)
+![PassGen Banner](assets/passgen-banner.jpg)
 
 # Passgen — Secure Passwords from the Terminal
 
 Passgen is a small Go CLI that generates strong random passwords from the terminal. By default it enables all character sets and uses `crypto/rand` for cryptographically secure randomness.
 
-![PassGen Demo](../demo.gif)
+![PassGen Demo](assets/demo.gif)
 
 ## Quickstart
 ```bash
