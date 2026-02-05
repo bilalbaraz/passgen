@@ -1,14 +1,12 @@
 name: Run tests and upload coverage
 
 on:
-  pull_request:
-    types: [closed]
+  push:
     branches: [main]
 
 jobs:
   test:
     name: Run tests and collect coverage
-    if: ${{ github.event.pull_request.merged == true }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
