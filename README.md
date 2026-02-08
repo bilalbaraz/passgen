@@ -44,33 +44,39 @@ wget -L https://github.com/bilalbaraz/passgen/releases/latest/download/passgen_l
 ```bash
 
 # basic (defaults to all character sets)
-passgen -len 16 -count 3
+passgen --len 16 --count 3
 
 # lower/upper/digits only
-passgen -len 24 -count 5 -lower -upper -digits
+passgen --len 24 --count 5 --lower --upper --digits
 
 # symbols only, excluding "@$"
-passgen -len 20 -symbols -exclude "@$"
+passgen --len 20 --symbols --exclude "@$"
 
 # exclude ambiguous characters (0 O 1 l I)
-passgen -len 16 -no-ambiguous
+passgen --len 16 --no-ambiguous
 
 # copy generated passwords to clipboard
-passgen -len 20 -count 3 -copy
+passgen --len 20 --count 3 --copy
 
 # render first password as QR code in terminal (requires -count 1)
-passgen -len 20 -qr
+passgen --len 20 --qr
+```
+
+## Development
+```bash
+go run ./cmd/passgen
+go build ./cmd/passgen
 ```
 
 ## Command Surface
-- **Length:** `-len <n>`
-- **Char sets:** `-lower`, `-upper`, `-digits`, `-symbols`
-- **Count:** `-count <n>`
-- **Exclude chars:** `-exclude "..."`
-- **No ambiguous:** `-no-ambiguous`
-- **Copy to clipboard:** `-copy`
-- **QR code:** `-qr` (only when `-count 1`)
-- **Help:** `-h` / `-help`
+- **Length:** `--len <n>` or `-l <n>`
+- **Char sets:** `--lower`, `--upper`, `--digits`, `--symbols`
+- **Count:** `--count <n>` or `-c <n>`
+- **Exclude chars:** `--exclude "..."` or `-x "..."`
+- **No ambiguous:** `--no-ambiguous`
+- **Copy to clipboard:** `--copy` or `-p`
+- **QR code:** `--qr` or `-q` (only when `--count 1`)
+- **Help:** `-h` / `--help`
 
 ## Configuration
 No config file. All behavior is controlled via CLI flags.
