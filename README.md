@@ -5,7 +5,7 @@
 # 🔐 passgen — Generate passwords from the terminal
 
 ![GitHub Release](https://img.shields.io/github/v/release/bilalbaraz/passgen)
-![Codecov](https://img.shields.io/codecov/c/gh/bilalbaraz/passgen)
+![Codecov](https://img.shields.io/codecov/c/gh/bilalbaraz/passgen?logo=codecov&label=codecov)
 
 <p align="center">
   <img src="demo.gif" alt="PassGen Demo" width="500" />
