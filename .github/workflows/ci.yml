@@ -22,15 +22,15 @@ jobs:
       - name: Build
         run: |
           mkdir -p dist
-          go build -o dist/passgen .
+          go build -o dist/passgen ./cmd/passgen
           mkdir -p dist/darwin_amd64
-          GOOS=darwin GOARCH=amd64 go build -o dist/darwin_amd64/passgen .
+          GOOS=darwin GOARCH=amd64 go build -o dist/darwin_amd64/passgen ./cmd/passgen
           (cd dist/darwin_amd64 && zip -q ../passgen_darwin_amd64.zip passgen)
           mkdir -p dist/linux_amd64
-          GOOS=linux GOARCH=amd64 go build -o dist/linux_amd64/passgen .
+          GOOS=linux GOARCH=amd64 go build -o dist/linux_amd64/passgen ./cmd/passgen
           (cd dist/linux_amd64 && zip -q ../passgen_linux_amd64.zip passgen)
           mkdir -p dist/linux_arm64
-          GOOS=linux GOARCH=arm64 go build -o dist/linux_arm64/passgen .
+          GOOS=linux GOARCH=arm64 go build -o dist/linux_arm64/passgen ./cmd/passgen
           (cd dist/linux_arm64 && zip -q ../passgen_linux_arm64.zip passgen)
           VERSION="${GITHUB_REF_NAME#v}"
           for ARCH in amd64 arm64; do
