@@ -92,7 +92,7 @@ I recommend users:
 
 ---
 
-## Encryption / Secure Communication (Optional)
+## Encryption / Secure Communication
 
 If you prefer encrypted communication, you may request my PGP public key via the security email.
 
