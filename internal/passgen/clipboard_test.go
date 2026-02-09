@@ -125,8 +125,9 @@ func TestCopyToClipboardWindowsClip(t *testing.T) {
 	tmp := t.TempDir()
 	outPath := filepath.Join(tmp, "out.txt")
 	t.Setenv("CLIP_OUT", outPath)
-	writeScript(t, tmp, "cmd.bat", "@echo off\r\nmore > \"%CLIP_OUT%\"\r\n")
-	t.Setenv("PATH", tmp)
+	writeScript(t, tmp, "clip.bat", "@echo off\r\nmore > \"%CLIP_OUT%\"\r\n")
+	origPath := os.Getenv("PATH")
+	t.Setenv("PATH", tmp+string(os.PathListSeparator)+origPath)
 
 	if err := CopyToClipboard("win"); err != nil {
 		t.Fatalf("unexpected error: %v", err)
