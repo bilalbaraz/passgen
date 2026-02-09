@@ -19,6 +19,15 @@ A small Go CLI that generates secure random passwords with flexible character se
 
 ## Installation
 
+### Go
+```bash
+# latest
+go install github.com/bilalbaraz/passgen@latest
+
+# specific version
+go install github.com/bilalbaraz/passgen@<version>
+```
+
 ### Homebrew
 ```bash
 brew tap bilalbaraz/tap
@@ -65,6 +74,8 @@ passgen --len 20 --qr
 
 ## Development
 ```bash
+go run .
+go build .
 go run ./cmd/passgen
 go build ./cmd/passgen
 go test -v ./...
