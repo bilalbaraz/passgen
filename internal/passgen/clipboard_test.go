@@ -4,6 +4,7 @@ import (
 	"os"
 	"path/filepath"
 	"runtime"
+	"strings"
 	"testing"
 )
 
@@ -56,6 +57,23 @@ func TestCopyToClipboardLinuxWlCopy(t *testing.T) {
 	}
 }
 
+func TestCopyToClipboardLinuxWlCopyFailure(t *testing.T) {
+	if runtime.GOOS != "linux" {
+		t.Skip("linux-only")
+	}
+	tmp := t.TempDir()
+	writeScript(t, tmp, "wl-copy", "#!/bin/sh\nexit 1\n")
+	t.Setenv("PATH", tmp)
+
+	err := CopyToClipboard("fail")
+	if err == nil {
+		t.Fatal("expected error when clipboard tool fails")
+	}
+	if !strings.Contains(err.Error(), "clipboard copy failed") {
+		t.Fatalf("unexpected error: %v", err)
+	}
+}
+
 func TestCopyToClipboardLinuxXclipFallback(t *testing.T) {
 	if runtime.GOOS != "linux" {
 		t.Skip("linux-only")
@@ -96,6 +114,28 @@ func TestCopyToClipboardDarwinPbcopy(t *testing.T) {
 		t.Fatalf("read output: %v", err)
 	}
 	if string(data) != "mac" {
+		t.Fatalf("unexpected clipboard content: %q", string(data))
+	}
+}
+
+func TestCopyToClipboardWindowsClip(t *testing.T) {
+	if runtime.GOOS != "windows" {
+		t.Skip("windows-only")
+	}
+	tmp := t.TempDir()
+	outPath := filepath.Join(tmp, "out.txt")
+	t.Setenv("CLIP_OUT", outPath)
+	writeScript(t, tmp, "cmd.bat", "@echo off\r\nmore > \"%CLIP_OUT%\"\r\n")
+	t.Setenv("PATH", tmp)
+
+	if err := CopyToClipboard("win"); err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	data, err := os.ReadFile(outPath)
+	if err != nil {
+		t.Fatalf("read output: %v", err)
+	}
+	if string(data) != "win" {
 		t.Fatalf("unexpected clipboard content: %q", string(data))
 	}
 }
