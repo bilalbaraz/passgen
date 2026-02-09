@@ -2,7 +2,11 @@ name: Run tests and upload coverage
 
 on:
   push:
-    branches: [main]
+    branches:
+      - "feature/**"
+      - "refactor/**"
+      - "fix/**"
+      - "main"
 
 jobs:
   test:
