@@ -8,6 +8,9 @@ on:
       - "fix/**"
       - "main"
 
+permissions:
+  contents: read
+
 jobs:
   test:
     name: Run tests and collect coverage
