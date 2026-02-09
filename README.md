@@ -66,6 +66,7 @@ passgen --len 20 --qr
 ```bash
 go run ./cmd/passgen
 go build ./cmd/passgen
+go test -v ./...
 ```
 
 ## Command Surface
