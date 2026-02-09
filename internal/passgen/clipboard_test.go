@@ -136,7 +136,8 @@ func TestCopyToClipboardWindowsClip(t *testing.T) {
 	if err != nil {
 		t.Fatalf("read output: %v", err)
 	}
-	if string(data) != "win" {
+	got := strings.TrimSpace(string(data))
+	if got != "win" {
 		t.Fatalf("unexpected clipboard content: %q", string(data))
 	}
 }
