@@ -1,4 +1,4 @@
-package main
+package cli
 
 import (
 	"errors"
@@ -8,7 +8,7 @@ import (
 	"github.com/skip2/go-qrcode"
 	"github.com/spf13/cobra"
 
-	"passgen/internal/passgen"
+	"github.com/bilalbaraz/passgen/internal/passgen"
 )
 
 var cfg passgen.Config

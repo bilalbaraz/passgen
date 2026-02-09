@@ -1,4 +1,4 @@
-module passgen
+module github.com/bilalbaraz/passgen
 
 go 1.25.6
 
