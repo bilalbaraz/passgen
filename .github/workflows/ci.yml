@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      id-token: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -46,6 +47,25 @@ jobs:
             dpkg-deb --build --root-owner-group "${PKGROOT}" "dist/passgen_${VERSION}_${ARCH}.deb"
           done
 
+      - name: Install cosign
+        uses: sigstore/cosign-installer@v3
+        with:
+          cosign-release: "v2.2.4"
+
+      - name: Sign release artifacts (keyless)
+        run: |
+          set -euo pipefail
+          for f in dist/passgen \
+                   dist/passgen_darwin_amd64.zip \
+                   dist/passgen_linux_amd64.zip \
+                   dist/passgen_linux_arm64.zip \
+                   dist/passgen_*_amd64.deb \
+                   dist/passgen_*_arm64.deb; do
+            if [ -f "$f" ]; then
+              cosign sign-blob --yes --output-signature "${f}.sig" "$f"
+            fi
+          done
+
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
@@ -63,3 +83,4 @@ jobs:
             dist/passgen_linux_arm64.zip
             dist/passgen_*_amd64.deb
             dist/passgen_*_arm64.deb
+            dist/passgen*.sig
