@@ -6,6 +6,7 @@ on:
       - "feature/**"
       - "refactor/**"
       - "fix/**"
+      - "chore/**"
       - "main"
 
 permissions:
