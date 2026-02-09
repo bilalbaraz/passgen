@@ -7,6 +7,7 @@
 ![GitHub Release](https://img.shields.io/github/v/release/bilalbaraz/passgen)
 ![Codecov](https://img.shields.io/codecov/c/gh/bilalbaraz/passgen?logo=codecov&label=codecov)
 [![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/bilalbaraz/passgen/badge)](https://scorecard.dev/viewer/?uri=github.com/bilalbaraz/passgen)
+[![OpenSSF Best Practices](https://www.bestpractices.dev/projects/11910/badge)](https://www.bestpractices.dev/projects/11910)
 
 <p align="center">
   <img src="demo.gif" alt="PassGen Demo" width="500" />
